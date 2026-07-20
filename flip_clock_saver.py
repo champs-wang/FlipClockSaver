@@ -30,7 +30,7 @@ COMMON_FONTS = [
     "Georgia","Impact","Lucida Console","Microsoft Sans Serif","Microsoft YaHei",
     "Microsoft YaHei UI","Palatino Linotype","Segoe UI","Segoe Print","Segoe Script",
     "SimSun","Sitka","Tahoma","Times New Roman","Trebuchet MS","Verdana",
-    "寰蒋闆呴粦","瀹嬩綋","榛戜綋",
+    "微软雅黑","宋体","黑体",
 ]
 
 def load_config():
@@ -47,60 +47,60 @@ def save_config(cfg):
 def run_settings_gui():
     cfg = load_config()
     root = tk.Tk()
-    root.title("缈婚〉鏃堕挓灞忎繚 v15 璁剧疆")
+    root.title("翻页时钟屏保 v15 设置")
     root.geometry("500x720+200+200")
     root.resizable(False, False)
     root.configure(bg="#2b2b2b")
     root.attributes("-topmost", True)
     root.lift(); root.focus_force()
 
-    tk.Label(root, text="缈婚〉鏃堕挓灞忎繚 v15 璁剧疆", font=("Microsoft YaHei",14,"bold"),
+    tk.Label(root, text="翻页时钟屏保 v15 设置", font=("Microsoft YaHei",14,"bold"),
              fg="#FFF", bg="#2b2b2b").pack(pady=(15,5))
 
-    f=tk.LabelFrame(root,text="鏃堕棿鍒跺紡",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="时间制式",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
     tv=tk.IntVar(value=1 if cfg.get("hour24",True) else 0)
-    tk.Radiobutton(f,text="24灏忔椂鍒?,variable=tv,value=1,bg="#2b2b2b",fg="#FFF",
+    tk.Radiobutton(f,text="24小时制",variable=tv,value=1,bg="#2b2b2b",fg="#FFF",
                    selectcolor="#2b2b2b",activebackground="#2b2b2b",activeforeground="#FFF"
                    ).pack(side="left",padx=15,pady=5)
-    tk.Radiobutton(f,text="12灏忔椂鍒?,variable=tv,value=0,bg="#2b2b2b",fg="#FFF",
+    tk.Radiobutton(f,text="12小时制",variable=tv,value=0,bg="#2b2b2b",fg="#FFF",
                    selectcolor="#2b2b2b",activebackground="#2b2b2b",activeforeground="#FFF"
                    ).pack(side="left",padx=15,pady=5)
 
-    f=tk.LabelFrame(root,text="鏃堕挓瀛楀彿",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="时钟字号",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
     csv=tk.IntVar(value=cfg.get("clock_size",100))
     tk.Spinbox(f,from_=30,to=300,textvariable=csv,width=5,
                bg="#3c3c3c",fg="#FFF",buttonbackground="#3c3c3c").pack(side="left",padx=10,pady=5)
 
-    f=tk.LabelFrame(root,text="鏃堕挓瀛椾綋",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="时钟字体",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
     cfv=tk.StringVar(value=cfg.get("clock_font","Consolas"))
     tk.OptionMenu(f,cfv,cfg["clock_font"],*COMMON_FONTS).pack(side="left",padx=10,pady=5)
 
-    f=tk.LabelFrame(root,text="鏃堕挓棰滆壊",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="时钟颜色",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
-    tk.Label(f,text="鏂囧瓧",fg="#CCC",bg="#2b2b2b").pack(side="left",padx=5)
+    tk.Label(f,text="文字",fg="#CCC",bg="#2b2b2b").pack(side="left",padx=5)
     ccv=tk.StringVar(value=cfg.get("clock_color","#FFF"))
     tk.Entry(f,textvariable=ccv,width=10,bg="#3c3c3c",fg="#FFF").pack(side="left",padx=5)
-    tk.Label(f,text="鍗＄墖",fg="#CCC",bg="#2b2b2b").pack(side="left",padx=5)
+    tk.Label(f,text="卡片",fg="#CCC",bg="#2b2b2b").pack(side="left",padx=5)
     cbv=tk.StringVar(value=cfg.get("card_bg","#1a1a1a"))
     tk.Entry(f,textvariable=cbv,width=10,bg="#3c3c3c",fg="#FFF").pack(side="left",padx=5)
 
-    f=tk.LabelFrame(root,text="鏃ユ湡淇℃伅瀛楀彿",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="日期信息字号",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
     isv=tk.IntVar(value=cfg.get("info_size",28))
     tk.Spinbox(f,from_=10,to=100,textvariable=isv,width=5,
                bg="#3c3c3c",fg="#FFF",buttonbackground="#3c3c3c").pack(side="left",padx=10,pady=5)
 
-    f=tk.LabelFrame(root,text="淇℃伅瀛椾綋",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="信息字体",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
     ifv=tk.StringVar(value=cfg.get("info_font","Microsoft YaHei"))
     tk.OptionMenu(f,ifv,cfg["info_font"],*COMMON_FONTS).pack(side="left",padx=10,pady=5)
 
-    f=tk.LabelFrame(root,text="淇℃伅棰滆壊",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f=tk.LabelFrame(root,text="信息颜色",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
-    tk.Label(f,text="鏂囧瓧",fg="#CCC",bg="#2b2b2b").pack(side="left",padx=5)
+    tk.Label(f,text="文字",fg="#CCC",bg="#2b2b2b").pack(side="left",padx=5)
     icv=tk.StringVar(value=cfg.get("info_color","#CCC"))
     tk.Entry(f,textvariable=icv,width=10,bg="#3c3c3c",fg="#FFF").pack(side="left",padx=5)
 
@@ -111,14 +111,14 @@ def run_settings_gui():
         save_config({"hour24":bool(tv.get()),"clock_size":csv.get(),
                       "clock_font":cfv.get(),"clock_color":ccv.get(),"card_bg":cbv.get(),
                       "info_size":isv.get(),"info_font":ifv.get(),"info_color":icv.get()})
-        st.set("宸蹭繚瀛?)
+        st.set("已保存")
         root.after(2000,lambda:st.set(""))
 
     bf=tk.Frame(root,bg="#2b2b2b"); bf.pack(pady=(10,15))
-    tk.Button(bf,text="淇濆瓨璁剧疆",font=("Microsoft YaHei",11),bg="#4CAF50",fg="#FFF",
+    tk.Button(bf,text="保存设置",font=("Microsoft YaHei",11),bg="#4CAF50",fg="#FFF",
               activebackground="#45a049",activeforeground="#FFF",padx=20,pady=5,
               command=do_save).pack(side="left",padx=10)
-    tk.Button(bf,text="鍏抽棴",font=("Microsoft YaHei",11),bg="#555",fg="#FFF",
+    tk.Button(bf,text="关闭",font=("Microsoft YaHei",11),bg="#555",fg="#FFF",
               activebackground="#666",activeforeground="#FFF",padx=20,pady=5,
               command=root.destroy).pack(side="left",padx=10)
     root.mainloop()
@@ -195,7 +195,7 @@ class MonitorDisplay:
     def update(self, time_str, date_str, weekday_str, lunar_str):
         # Update digits only if changed
         if time_str != self._last_time_str:
-            # time_str = "HH:MM:SS" 鈫?digits at indices 0,1,3,4,6,7
+            # time_str = "HH:MM:SS" → digits at indices 0,1,3,4,6,7
             for slot_idx, ch_idx in zip([0,1,3,4,6,7], [0,1,3,4,6,7]):
                 self.clock_labels[slot_idx].config(text=time_str[ch_idx])
             self._last_time_str = time_str
@@ -244,15 +244,15 @@ class FlipClockSaver:
         try:
             import zhdate
             lu = zhdate.ZhDate.from_datetime(dt)
-            gn=["鐢?,"涔?,"涓?,"涓?,"鎴?,"宸?,"搴?,"杈?,"澹?,"鐧?]
-            zh=["瀛?,"涓?,"瀵?,"鍗?,"杈?,"宸?,"鍗?,"鏈?,"鐢?,"閰?,"鎴?,"浜?]
-            an=["榧?,"鐗?,"铏?,"鍏?,"榫?,"铔?,"椹?,"缇?,"鐚?,"楦?,"鐙?,"鐚?]
-            mn=["姝?,"浜?,"涓?,"鍥?,"浜?,"鍏?,"涓?,"鍏?,"涔?,"鍗?,"鍐?,"鑵?]
-            dn=["鍒濅竴","鍒濅簩","鍒濅笁","鍒濆洓","鍒濅簲","鍒濆叚","鍒濅竷","鍒濆叓","鍒濅節","鍒濆崄",
-                "鍗佷竴","鍗佷簩","鍗佷笁","鍗佸洓","鍗佷簲","鍗佸叚","鍗佷竷","鍗佸叓","鍗佷節","浜屽崄",
-                "寤夸竴","寤夸簩","寤夸笁","寤垮洓","寤夸簲","寤垮叚","寤夸竷","寤垮叓","寤夸節","涓夊崄"]
+            gn=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
+            zh=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+            an=["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
+            mn=["正","二","三","四","五","六","七","八","九","十","冬","腊"]
+            dn=["初一","初二","初三","初四","初五","初六","初七","初八","初九","初十",
+                "十一","十二","十三","十四","十五","十六","十七","十八","十九","二十",
+                "廿一","廿二","廿三","廿四","廿五","廿六","廿七","廿八","廿九","三十"]
             yg=gn[(lu.lunar_year-4)%10]+zh[(lu.lunar_year-4)%12]
-            return f"{yg}{an[(lu.lunar_year-4)%12]}骞?{mn[(lu.lunar_month-1)%12]}鏈坽dn[lu.lunar_day-1]}"
+            return f"{yg}{an[(lu.lunar_year-4)%12]}年 {mn[(lu.lunar_month-1)%12]}月{dn[lu.lunar_day-1]}"
         except: return ""
 
     def _tick(self):
@@ -261,8 +261,8 @@ class FlipClockSaver:
         try:
             now = datetime.now()
             ts = now.strftime("%H:%M:%S") if self.cfg["hour24"] else now.strftime("%I:%M:%S %p")
-            ds = now.strftime("%Y骞?m鏈?d鏃?)
-            wd = ["鏄熸湡涓€","鏄熸湡浜?,"鏄熸湡涓?,"鏄熸湡鍥?,"鏄熸湡浜?,"鏄熸湡鍏?,"鏄熸湡鏃?][now.weekday()]
+            ds = now.strftime("%Y年%m月%d日")
+            wd = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"][now.weekday()]
             ls = self._get_lunar(now)
             for d in self.displays:
                 d.update(ts, ds, wd, ls)
