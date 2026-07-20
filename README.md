@@ -1,37 +1,45 @@
 # FlipClockSaver
 
-Windows 缈婚〉鏃堕挓灞忓箷淇濇姢绋嬪簭锛屾敮鎸佸鏄剧ず鍣ㄣ€?
-## 鐗规€?
-- 鍙屾樉绀哄櫒 / 澶氭樉绀哄櫒瀹岀編鏀寔
-- 24 灏忔椂鍒?/ 12 灏忔椂鍒跺彲鍒囨崲
-- 鍙嚜瀹氫箟鏃堕挓瀛椾綋銆佸瓧鍙枫€侀鑹?- 鍙嚜瀹氫箟鏃ユ湡淇℃伅瀛椾綋銆佸瓧鍙枫€侀鑹?- 鍐滃巻鏄剧ず
-- 闆堕棯鐑佹覆鏌擄紙Label 缁勪欢鍘熷瓙鏇存柊锛?
-## 瀹夎
+Windows 翻页时钟屏幕保护程序，支持多显示器。
 
-1. 涓嬭浇 `FlipClockSaver.scr`
-2. 鍙抽敭 鈫?瀹夎锛屾垨鐩存帴鏀惧叆 `C:\Windows\` 鐩綍
-3. 鍙抽敭妗岄潰 鈫?涓€у寲 鈫?閿佸睆鐣岄潰 鈫?灞忓箷淇濇姢绋嬪簭璁剧疆锛岄€夋嫨 FlipClockSaver
+## 特性
 
-## 璁剧疆
+- 双显示器 / 多显示器完美支持
+- 24 小时制 / 12 小时制可切换
+- 可自定义时钟字体、字号、颜色
+- 可自定义日期信息字体、字号、颜色
+- 农历显示
+- 零闪烁渲染（Label 组件原子更新）
 
-鍙抽敭 `FlipClockSaver.scr` 鈫?閰嶇疆锛屾垨鍛戒护琛岋細
+## 安装
+
+1. 下载 `FlipClockSaver.scr`
+2. 右键 → 安装，或直接放入 `C:\Windows\` 目录
+3. 右键桌面 → 个性化 → 锁屏界面 → 屏幕保护程序设置，选择 FlipClockSaver
+
+## 设置
+
+右键 `FlipClockSaver.scr` → 配置，或命令行：
 
 ```
 FlipClockSaver.scr /c
 ```
 
-鍙厤缃」锛?- 鏃堕棿鍒跺紡锛?2h / 24h锛?- 鏃堕挓瀛楀彿 / 瀛椾綋 / 棰滆壊 / 鍗＄墖搴曡壊
-- 淇℃伅瀛楀彿 / 瀛椾綋 / 棰滆壊
-- 璁剧疆淇濆瓨鑷?`%APPDATA%\FlipClockSaver\flip_clock_config.json`
+可配置项：
+- 时间制式（12h / 24h）
+- 时钟字号 / 字体 / 颜色 / 卡片底色
+- 信息字号 / 字体 / 颜色
+- 设置保存至 `%APPDATA%\FlipClockSaver\flip_clock_config.json`
 
-## 寮€鍙戣€?
+## 开发者
+
 ```bash
 pip install pyinstaller zhdate
 pyinstaller --onefile --noconsole --name FlipClockSaver flip_clock_saver.py
-# 浜х墿: dist/FlipClockSaver.exe 鈫?閲嶅懡鍚嶄负 .scr
+# 产物: dist/FlipClockSaver.exe → 重命名为 .scr
 ```
 
-## 绯荤粺瑕佹眰
+## 系统要求
 
 - Windows 10 / 11
-- 涓嶉渶瑕侀澶栬繍琛岀幆澧冿紙PyInstaller 鎵撳寘涓虹嫭绔?exe锛?
+- 不需要额外运行环境（PyInstaller 打包为独立 exe）
