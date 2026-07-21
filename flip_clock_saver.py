@@ -20,7 +20,7 @@ DEFAULT_CONFIG = {
     "clock_size": 200,          "clock_color": "#FFFFFF",
     "card_bg": "#000000",
     "clock_font": "Consolas",
-    "info_size": 28,            "info_spacing": 98,
+    "info_size": 28,
     "info_color": "#CCCCCC",    "info_font": "Microsoft YaHei",
 }
 
@@ -95,7 +95,7 @@ def run_settings_gui():
 
     f=tk.LabelFrame(root,text="行间距",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
-    spv=tk.IntVar(value=cfg.get("info_spacing",98))
+    spv=tk.IntVar(value=cfg.get("info_spacing", int(cfg.get("info_size",28)*3.5)))
     tk.Spinbox(f,from_=20,to=300,textvariable=spv,width=5,
                bg="#3c3c3c",fg="#FFF",buttonbackground="#3c3c3c").pack(side="left",padx=10,pady=5)
 
