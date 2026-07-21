@@ -183,7 +183,7 @@ class MonitorDisplay:
 
         # Info text area
         info_start_y = int(mh * 0.65)
-        info_spacing = int(cfg["info_size"] * 1.6)
+        info_spacing = int(cfg["info_size"] * 2.5)
         fs = (cfg.get("info_font","Microsoft YaHei"), cfg["info_size"])
         fc = cfg["info_color"]
 
