@@ -20,8 +20,8 @@ DEFAULT_CONFIG = {
     "clock_size": 200,          "clock_color": "#FFFFFF",
     "card_bg": "#000000",
     "clock_font": "Consolas",
-    "info_size": 28,            "info_color": "#CCCCCC",
-    "info_font": "Microsoft YaHei",
+    "info_size": 28,            "info_spacing": 98,
+    "info_color": "#CCCCCC",    "info_font": "Microsoft YaHei",
 }
 
 COMMON_FONTS = [
@@ -48,7 +48,7 @@ def run_settings_gui():
     cfg = load_config()
     root = tk.Tk()
     root.title("翻页时钟屏保 v15 设置")
-    root.geometry("500x720+200+200")
+    root.geometry("500x760+200+200")
     root.resizable(False, False)
     root.configure(bg="#2b2b2b")
     root.attributes("-topmost", True)
@@ -93,6 +93,12 @@ def run_settings_gui():
     tk.Spinbox(f,from_=10,to=100,textvariable=isv,width=5,
                bg="#3c3c3c",fg="#FFF",buttonbackground="#3c3c3c").pack(side="left",padx=10,pady=5)
 
+    f=tk.LabelFrame(root,text="行间距",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
+    f.pack(fill="x",padx=20,pady=5)
+    spv=tk.IntVar(value=cfg.get("info_spacing",98))
+    tk.Spinbox(f,from_=20,to=300,textvariable=spv,width=5,
+               bg="#3c3c3c",fg="#FFF",buttonbackground="#3c3c3c").pack(side="left",padx=10,pady=5)
+
     f=tk.LabelFrame(root,text="信息字体",font=("Microsoft YaHei",10),fg="#CCC",bg="#2b2b2b")
     f.pack(fill="x",padx=20,pady=5)
     ifv=tk.StringVar(value=cfg.get("info_font","Microsoft YaHei"))
@@ -110,7 +116,7 @@ def run_settings_gui():
     def do_save():
         save_config({"hour24":bool(tv.get()),"clock_size":csv.get(),
                       "clock_font":cfv.get(),"clock_color":ccv.get(),"card_bg":cbv.get(),
-                      "info_size":isv.get(),"info_font":ifv.get(),"info_color":icv.get()})
+                      "info_size":isv.get(),"info_spacing":spv.get(),"info_font":ifv.get(),"info_color":icv.get()})
         st.set("已保存")
         root.after(2000,lambda:st.set(""))
 
@@ -183,7 +189,7 @@ class MonitorDisplay:
 
         # Info text area
         info_start_y = int(mh * 0.65)
-        info_spacing = int(cfg["info_size"] * 3.5)
+        info_spacing = cfg.get("info_spacing", int(cfg["info_size"] * 3.5))
         fs = (cfg.get("info_font","Microsoft YaHei"), cfg["info_size"])
         fc = cfg["info_color"]
 
