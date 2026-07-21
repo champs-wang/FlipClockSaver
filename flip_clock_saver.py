@@ -17,8 +17,8 @@ os.makedirs(CONFIG_DIR, exist_ok=True)
 
 DEFAULT_CONFIG = {
     "hour24": True,
-    "clock_size": 100,          "clock_color": "#FFFFFF",
-    "card_bg": "#1a1a1a",
+    "clock_size": 200,          "clock_color": "#FFFFFF",
+    "card_bg": "#000000",
     "clock_font": "Consolas",
     "info_size": 28,            "info_color": "#CCCCCC",
     "info_font": "Microsoft YaHei",
